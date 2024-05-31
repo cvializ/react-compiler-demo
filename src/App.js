@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 const Inner = ({ myCb }) => {
-  const myOtherCb = () => { console.log('wow'); };
+  const myOtherCb = useCallback(() => { console.log('wow'); }, []);
 
   useEffect(() => {
     myCb();
@@ -14,7 +14,7 @@ const Inner = ({ myCb }) => {
 }
 
 function App() {
-  const myCb = () => { console.log('foo')};
+  const myCb = useCallback(() => console.log('foo'), []);
   const [counter, setCounter] = useState(0);
 
   return (
